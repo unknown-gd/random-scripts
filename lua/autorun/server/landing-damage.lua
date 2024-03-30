@@ -16,10 +16,10 @@ hook.Add( "OnPlayerHitGround", "Landing Damage", function( ply, _, __, speed )
 
     local entity = traceResult.Entity
     if entity:IsValid() and entity:IsSolid() then
+        bulletData.Distance = traceResult.HitPos:Distance( traceResult.StartPos )
         bulletData.Damage = ceil( speed / 100 )
         bulletData.Src = traceResult.StartPos
         bulletData.Dir = traceResult.Normal
-        bulletData.Distance = speed
         ply:FireBullets( bulletData )
     end
 end )
